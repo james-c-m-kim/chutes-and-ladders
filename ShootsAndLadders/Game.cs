@@ -20,7 +20,12 @@ namespace ShootsAndLadders
             {
                 foreach (var player in board.Players)
                 {
-                    if (lastSquare.Players.Contains(player)) continue;
+                    if (lastSquare.Players.Contains(player))
+                    {
+                        Console.WriteLine($"Player {player.Number} is already at square 100, so doesn't spin.");
+                        Console.WriteLine();
+                        continue;
+                    }
 
                     // replaced all the GetNumber() calls with property accessor notations
                     var currentSquare = board.Squares.Single(x => x.Players.Any(y => y.Number == player.Number));
@@ -35,13 +40,13 @@ namespace ShootsAndLadders
                     var newSquare = board.Squares[newSquareIndex];
                     currentSquare.Players.Remove(player);
 
-                    Console.WriteLine($"Player {player.Number} [{currentSquareIndex + 1}]: spun a {spacesToMove}. Moved to square {newSquareIndex + 1}");
+                    Console.WriteLine($"Player {player.Number} [{currentSquare.SquareNumber}]: spun a {spacesToMove}. Moved to square {newSquare.SquareNumber}");
 
                     if (newSquare.ChuteOrLadderTo != null)
                     {
                         var hyperJump = newSquare.ChuteOrLadderTo.SquareNumber;
                         var ladderOrChute = hyperJump > newSquareIndex ? "ladder" : "chute";
-                        newSquare = newSquare.ChuteOrLadderTo;
+                        newSquare = newSquare.ChuteOrLadderTo; // hijack the new square to the chute/ladder
 
                         Console.WriteLine($"Took a {ladderOrChute} to {hyperJump}!");
                     }
@@ -69,6 +74,7 @@ namespace ShootsAndLadders
             }
 
             // let's make this more exciting and rank the players as they finish.
+            Console.WriteLine();
             var winner = lastSquare.Players.First();
             Console.WriteLine($"Player {winner.Number} is the winner: CONGRATS!");
 
