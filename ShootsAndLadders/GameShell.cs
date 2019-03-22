@@ -14,7 +14,7 @@ namespace ShootsAndLadders
             //while (true) --> let's bind the eval to an explicit variable
             while (play)
             {
-                Console.WriteLine("Welcome to shoots and ladders! How many players?");
+                Console.WriteLine("Welcome to shoots and ladders! How many players? (Choose between 2 to 10)");
                 var numberOfPlayers = playersAssigner.GetPlayerCount();
 
                 //int.Parse(numberOfPlayers)  --> we didn't have graceful exception handling
