@@ -8,7 +8,9 @@ namespace ShootsAndLadders
         static void Main(string[] args)
         {
             new GameShell().Start();
+#if DEBUG
             Console.ReadLine();
+#endif
         }
     }
 }

@@ -20,6 +20,8 @@ namespace ShootsAndLadders
             {
                 foreach (var player in board.Players)
                 {
+                    if (lastSquare.Players.Contains(player)) continue;
+
                     // replaced all the GetNumber() calls with property accessor notations
                     var currentSquare = board.Squares.Single(x => x.Players.Any(y => y.Number == player.Number));
                     var currentSquareIndex = board.Squares.IndexOf(currentSquare);
@@ -33,7 +35,7 @@ namespace ShootsAndLadders
                     var newSquare = board.Squares[newSquareIndex];
                     currentSquare.Players.Remove(player);
 
-                    Console.WriteLine($"Player {player.Number} [{currentSquareIndex + 1}]: spun a {spacesToMove}. Moved to square {newSquareIndex}");
+                    Console.WriteLine($"Player {player.Number} [{currentSquareIndex + 1}]: spun a {spacesToMove}. Moved to square {newSquareIndex + 1}");
 
                     if (newSquare.ChuteOrLadderTo != null)
                     {
