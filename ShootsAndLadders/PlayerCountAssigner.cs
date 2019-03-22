@@ -14,14 +14,14 @@ namespace ShootsAndLadders
                 validInput = int.TryParse(numberOfPlayersInput, out numberOfPlayers);
 
                 // just for sanity's sakes, i'm going to enforce a numeric range.
-                if (numberOfPlayers < 0 || numberOfPlayers > 10)
+                if (numberOfPlayers < 2 || numberOfPlayers > 10)
                 {
                     validInput = false;
                 }
 
                 if (!validInput)
                 {
-                    Console.WriteLine("Please enter a number between 1 and 10.");
+                    Console.WriteLine("Please enter a number between 2 and 10.");
                 }
             } while (!validInput);
 
